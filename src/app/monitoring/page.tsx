@@ -1,3 +1,1 @@
-export default function Home() {
-	return <div>App</div>;
-}
+export { MonitoringPage as default } from '@routes/monitoring';
