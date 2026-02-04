@@ -1,32 +1,20 @@
+import { MOCKS_CONFIG } from '@config/mocks';
 import { Spirit, ThreatLevel } from '@entities/spirit';
-import { faker } from '@faker-js/faker';
+import { createSpiritMock } from './_helpers';
 
-const threatLevels = Object.values(ThreatLevel);
-type SpiritsStore = Map<number, Spirit>;
+export const threatLevels: ThreatLevel[] = Object.values(ThreatLevel);
+type SpiritsMap = Map<number, Spirit>;
 
-export const spiritsMapMock: SpiritsStore = Array(40)
+export const spiritsMapMock: SpiritsMap = Array(MOCKS_CONFIG.SPIRITS_COUNT)
 	.fill(null)
-	.reduce((spirits, _, index) => {
+	.reduce((map, _, index) => {
 		const id = index + 1;
 
-		const spirit = createSpiritMock(id);
+		const spirit: Spirit = createSpiritMock(id);
 
-		spirits.set(id, spirit);
+		map.set(id, spirit);
 
-		return spirits;
+		return map;
 	}, new Map());
 
-function createSpiritMock(id: number) {
-	const randomThreatLevelIndex = faker.number.int({
-		min: 0,
-		max: threatLevels.length - 1,
-	});
-	return {
-		id,
-		name: faker.person.firstName(),
-		threatLevel: threatLevels[randomThreatLevelIndex],
-		location: faker.location.city(),
-		status: 'active',
-	};
-}
 export const spiritsMock: Spirit[] = [...spiritsMapMock.values()];

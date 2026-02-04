@@ -8,7 +8,7 @@ import { useCaptureSpiritMutation } from '../model/mutations';
 
 type Props = {
 	spiritId: number;
-	status: SpiritStatus;
+	status: SpiritStatus | `${SpiritStatus}`;
 };
 
 export const CaptureSpiritButton = ({ spiritId, status }: Props) => {
@@ -19,7 +19,7 @@ export const CaptureSpiritButton = ({ spiritId, status }: Props) => {
 	const handleCapture = useCallback(() => {
 		mutate(spiritId, {
 			onError: () => {
-				toast.error('Не удалось');
+				toast.error('Не удалось поймать');
 			},
 		});
 	}, [spiritId, mutate]);
@@ -28,7 +28,7 @@ export const CaptureSpiritButton = ({ spiritId, status }: Props) => {
 			onClick={handleCapture}
 			disabled={isCaptured || isPending}
 		>
-			{isCaptured ? 'Захвачен' : isPending ? 'Захват...' : 'Захватить'}
+			{isCaptured ? 'Captured' : isPending ? 'Capturing...' : 'Capture'}
 		</Button>
 	);
 };

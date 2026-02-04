@@ -1,3 +1,4 @@
+import { MOCKS_CONFIG } from '@config/mocks';
 import { SpiritStatus } from '@entities/spirit';
 import { NextResponse } from 'next/server';
 import { spiritsMapMock } from '../_mock';
@@ -16,7 +17,7 @@ export async function POST(
 		);
 	}
 
-	const shouldFail = Math.random() < 0.3;
+	const shouldFail = Math.random() < MOCKS_CONFIG.API_ERROR_RATE;
 
 	if (shouldFail) {
 		return NextResponse.json(
