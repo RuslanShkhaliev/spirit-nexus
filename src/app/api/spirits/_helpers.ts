@@ -1,27 +1,22 @@
-import { Spirit, SpiritStatus, ThreatLevel } from '@entities/spirit';
+import { Spirit, SpiritStatus } from '@entities/spirit';
 import { faker } from '@faker-js/faker';
 import { getRandomItem } from '@utils/random';
-import { spiritsMock, threatLevels } from './_mock';
+import { threatLevels } from './_constants';
 
-export const createSpiritMock = (id: number): Spirit => ({
+export function createSpiritsMocks(count: number): Map<number, Spirit> {
+	const map = new Map<number, Spirit>();
+
+	for (let i = 1; i <= count; i++) {
+		map.set(i, createSpiritMock(i));
+	}
+
+	return map;
+}
+
+const createSpiritMock = (id: number): Spirit => ({
 	id,
 	name: faker.person.firstName(),
 	threatLevel: getRandomItem(threatLevels),
 	location: faker.location.city(),
 	status: SpiritStatus.ACTIVE,
 });
-export const getRandomSpirit = (): Spirit => getRandomItem(spiritsMock);
-export const getNextThreat = (
-	current: ThreatLevel | `${ThreatLevel}`,
-): ThreatLevel => {
-	const filtered = threatLevels.filter((item) => item !== current);
-	return getRandomItem(filtered);
-};
-
-export const updateThreatLevel = (): Spirit => {
-	// TODO: возможно стоит исключать "пойманные" духи из выборки и помечать их threatLevel - low.
-	const spirit: Spirit = getRandomSpirit();
-	spirit.threatLevel = getNextThreat(spirit.threatLevel);
-
-	return spirit;
-};

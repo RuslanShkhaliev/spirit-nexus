@@ -1,6 +1,6 @@
 import { MOCKS_CONFIG } from '@config/mocks';
 import { Spirit } from '@entities/spirit';
-import { updateThreatLevel } from '../_helpers';
+import { updateThreatLevel } from './_helpers';
 
 export async function GET() {
 	const encoder = new TextEncoder();

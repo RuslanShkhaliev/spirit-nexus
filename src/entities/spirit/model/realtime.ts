@@ -1,5 +1,6 @@
 'use client';
 
+import { spiritSchema } from '@entities/spirit';
 import { useQueryClient } from '@tanstack/react-query';
 import { useEffect } from 'react';
 import { SPIRIT_ENDPOINTS } from './endpoints';
@@ -13,10 +14,11 @@ export const useSpiritStream = () => {
 		const source = new EventSource(SPIRIT_ENDPOINTS.stream);
 
 		source.addEventListener('spirit:update', (event) => {
-			const updated: Spirit = JSON.parse(event.data);
+			const parsedData: Spirit = JSON.parse(event.data);
+			const data = spiritSchema.parse(parsedData);
 
 			queryClient.setQueryData<Spirit[]>(spiritQueryKeys.all(), (old) =>
-				old?.map((s) => (s.id === updated.id ? updated : s)),
+				old?.map((s) => (s.id === data.id ? data : s)),
 			);
 		});
 
