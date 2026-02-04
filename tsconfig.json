@@ -18,9 +18,19 @@
         "name": "next"
       }
     ],
+    "baseUrl": ".",
     "paths": {
-      "@/*": ["./*"]
-    }
+      "@/*": ["./src/*"],
+      "@pages/*": ["./src/pages/*"],
+      "@entities/*": ["./src/entities/*"],
+      "@features/*": ["./src/features/*"],
+      "@widgets/*": ["./src/widgets/*"],
+
+      "@shared/*": ["./src/shared/*"],
+      "@config/*": ["./src/shared/config/*"],
+      "@api/*": ["./src/shared/api/*"],
+      "@lib/*": ["./src/shared/lib/*"],
+    },
   },
   "include": [
     "next-env.d.ts",
