@@ -1,36 +1,73 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Spirit Nexus
 
-## Getting Started
+Тестовый проект на Next.js с архитектурой Feature-Sliced Design.  
+Демонстрирует работу с сущностями, server components, client state, React Query и real-time обновлениями.
 
-First, run the development server:
+---
+
+## Запуск локально
 
 ```bash
-npm run dev
-# or
+yarn install
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Запуск Docker
+```bash 
+yarn docker:up
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Стек
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Next.js 16 (App Router, RSC)
+- TypeScript
+- React 19
+- TanStack React Query
+- Zod
+- SCSS Modules
+- Docker / Docker Compose
+- Faker (моки)
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## Архитектура
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Используется **Feature-Sliced Design (FSD)**.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Слои
 
-## Deploy on Vercel
+- **shared**
+    - `api` – http-клиенты, queryClient
+    - `ui` – переиспользуемые UI-компоненты (Button, Badge и т.д.)
+    - `config` – константы, настройки моков
+- **entities**
+    - `spirit` – схема, типы, api, queries, ui (SpiritCard)
+- **features**
+    - `capture-spirit` – бизнес-операция по поимке духа (mutation + UI)
+- **widgets**
+    - `spirit-list` – список духов с пагинацией и экшенами
+- **routes**
+    - страницы приложения (monitoring)
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Функциональность
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Получение списка духов
+- Получение духа по id
+- Захват духа (mutation с optimistic update)
+- Real-time обновление уровня угрозы через SSE
+- UI автоматически реагирует на server events без перезагрузки
+- Все данные валидируются схемами
+
+---
+
+## API (моки)
+
+- `GET /api/spirits` – список духов
+- `GET /api/spirits/:id` – один дух
+- `POST /api/spirits/:id/capture` – захват духа
+- `GET /api/spirits/stream` – SSE поток обновлений
+
+---
+
+
