@@ -1,6 +1,6 @@
 import clsx from 'clsx';
 import type { PropsWithChildren } from 'react';
-import styles from './Card.module.scss';
+import styles from './styles.module.scss';
 
 type Props = PropsWithChildren<{
 	className?: string;

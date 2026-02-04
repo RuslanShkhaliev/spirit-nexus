@@ -21,6 +21,7 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
+      "@app/*": ["./src/app/*"],
       "@routes/*": ["./src/routes/*"],
       "@entities/*": ["./src/entities/*"],
       "@features/*": ["./src/features/*"],
@@ -30,6 +31,7 @@
       "@config/*": ["./src/shared/config/*"],
       "@api/*": ["./src/shared/api/*"],
       "@lib/*": ["./src/shared/lib/*"],
+      "@utils/*": ["./src/shared/utils/*"],
     },
   },
   "include": [

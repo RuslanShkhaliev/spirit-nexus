@@ -1,10 +1,10 @@
-import { getSpirits } from '@entities/spirit';
-import { spiritQueryKeys } from '@entities/spirit/model/queryKeys';
+import { getSpirits, Spirit } from '@entities/spirit';
 import { useQuery } from '@tanstack/react-query';
+import { spiritQueryKeys } from './queryKeys';
 
-export function useSpiritsQuery(filters?: unknown) {
+export function useSpiritsQuery() {
 	return useQuery({
-		queryKey: spiritQueryKeys.all(filters),
-		queryFn: () => getSpirits(filters),
+		queryKey: spiritQueryKeys.all(),
+		queryFn: (): Promise<Spirit[]> => getSpirits(),
 	});
 }

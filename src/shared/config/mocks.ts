@@ -1,0 +1,5 @@
+export const MOCKS_CONFIG = {
+	SPIRITS_COUNT: 30,
+	THREAT_CHANGE_INTERVAL_MS: 5_000,
+	API_ERROR_RATE: 0.3,
+} as const;

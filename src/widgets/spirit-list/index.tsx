@@ -1,1 +1,1 @@
-export * from '@widgets/spirit-list/ui/SpiritList';
+export * from './ui/spirit-list';

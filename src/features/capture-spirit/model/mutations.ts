@@ -44,11 +44,5 @@ export const useCaptureSpiritMutation = () => {
 				);
 			}
 		},
-
-		onSettled: () => {
-			// queryClient.invalidateQueries({
-			// 	queryKey: spiritQueryKeys.all(),
-			// });
-		},
 	});
 };

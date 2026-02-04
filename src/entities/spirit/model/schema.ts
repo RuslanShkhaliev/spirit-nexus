@@ -11,5 +11,3 @@ export const spiritSchema = z.object({
 	location: z.string(),
 	status: spiritStatusSchema,
 });
-
-export const spiritsListSchema = z.array(spiritSchema);

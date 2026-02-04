@@ -1,11 +1,12 @@
 'use client';
 
-import { SpiritCard, useSpiritsQuery } from '@entities/spirit';
+import { SpiritCard, useSpiritsQuery, useSpiritStream } from '@entities/spirit';
 import { CaptureSpiritButton } from '@features/capture-spirit';
-import styles from './SpiritList.module.scss';
+import styles from './styles.module.scss';
 
 export const SpiritList = () => {
 	const { data, isLoading, isError } = useSpiritsQuery();
+	useSpiritStream();
 	if (isLoading) return <div>Loading...</div>;
 	if (isError || !data) return <div>Error</div>;
 

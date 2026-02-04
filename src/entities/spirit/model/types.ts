@@ -1,8 +1,7 @@
 import { z } from 'zod';
-import { spiritSchema, spiritsListSchema } from './schema';
+import { spiritSchema } from './schema';
 
 export type Spirit = z.infer<typeof spiritSchema>;
-export type SpiritsList = z.infer<typeof spiritsListSchema>;
 export enum ThreatLevel {
 	LOW = 'low',
 	MEDIUM = 'medium',

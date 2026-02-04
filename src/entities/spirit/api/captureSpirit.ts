@@ -1,6 +1,7 @@
 import { fetchClient } from '@api/fetch-client';
-import { Spirit } from '@entities/spirit';
+import { SPIRIT_ENDPOINTS } from '../model/endpoints';
+import { Spirit } from '../model/types';
 
 export const captureSpirit = (id: number): Promise<Spirit> => {
-	return fetchClient.post(`/api/spirits/${id}`);
+	return fetchClient.post(SPIRIT_ENDPOINTS.capture(id));
 };
