@@ -34,20 +34,6 @@ yarn docker:up
 
 Используется **Feature-Sliced Design (FSD)**.
 
-### Слои
-
-- **shared**
-    - `api` – http-клиенты, queryClient
-    - `ui` – переиспользуемые UI-компоненты (Button, Badge и т.д.)
-    - `config` – константы, настройки моков
-- **entities**
-    - `spirit` – схема, типы, api, queries, ui (SpiritCard)
-- **features**
-    - `capture-spirit` – бизнес-операция по поимке духа (mutation + UI)
-- **widgets**
-    - `spirit-list` – список духов с пагинацией и экшенами
-- **routes**
-    - страницы приложения (monitoring)
 ---
 
 ## Функциональность
@@ -65,7 +51,7 @@ yarn docker:up
 
 - `GET /api/spirits` – список духов
 - `GET /api/spirits/:id` – один дух
-- `POST /api/spirits/:id/capture` – захват духа
+- `POST /api/spirits/:id` – захват духа
 - `GET /api/spirits/stream` – SSE поток обновлений
 
 ---
