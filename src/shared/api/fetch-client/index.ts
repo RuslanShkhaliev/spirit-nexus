@@ -1,6 +1,6 @@
-import { HTTP_METHODS } from 'src/shared/api/fetch-client/constants';
-import { RequestError } from 'src/shared/api/fetch-client/exception';
-import { FetchClient } from 'src/shared/api/fetch-client/types';
+import { HTTP_METHODS } from './constants';
+import { RequestError } from './exception';
+import { FetchClient } from './types';
 
 export const fetchClient: FetchClient = async <T = unknown>(
 	input: RequestInfo | URL,
