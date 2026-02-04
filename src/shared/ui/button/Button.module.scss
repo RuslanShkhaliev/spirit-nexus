@@ -1,0 +1,12 @@
+.button {
+	padding: 8px 12px;
+	border-radius: 6px;
+	border: none;
+	background: #2d2d2d;
+	color: #fff;
+
+	&:disabled {
+		opacity: 0.5;
+		cursor: not-allowed;
+	}
+}
